@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reservation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js";
+        import { getDatabase, ref, set, push, onValue, remove } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBug_T6hVviPkHWIPUfwRMYUSBJYAFE-Hk",
+            authDomain: "reservation-c259a.firebaseapp.com",
+            projectId: "reservation-c259a",
+            storageBucket: "reservation-c259a.appspot.com",
+            messagingSenderId: "159971092529",
+            appId: "1:159971092529:web:fa6bb8884ac3fc3a028d10"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+                
+        submit.addEventListener('click', (e)=>{
+            set(ref(database, '/'+document.getElementById('phone').value)), {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value
+                }
+            });
+    </script>
+</head>
+<body class="container mt-5">
+    <h3>제천음악제 참가 사전등록</h3><br>
+    <div>제천음악제에 참가하시려면 아래에 참가자 정보를 입력하세요</div><br>
+    <h5>참가자 정보</h5>
+    <input type="text" id="name" autofocus="autofocus" placeholder="이름">
+    <input type="number" id="phone" placeholder="전화번호"><br><br>
+    <h5>개인정보 수집.이용 동의</h5>
+    <div>1. 수집목적: 제천음악제 입장관리</div>
+    <div>2. 수집내용: 이름, 전화번호</div>
+    <div>3. 수집이용기간: 음악제 종료 후  5일 간</div>
+    <div>4. 본 수집/이용동의를 거부할 수 있습니다. 단 거부 시에는 온라인을 통한 사전등록이 제한됩니다.</div>
+    <input type="checkbox" id="agree"><label for="agree"> 개인정보 수집/이용에 동의합니다.</label>
+    <button type="submit" id="submit" class="btn btn-primary">입장 사전등록</button>
+    
+    <div id="carouselExampleIndicators" class="carousel slide mb-3" data-bs-ride="true">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="https://pbs.twimg.com/media/FMHHxP4aIAUBMuH.jpg" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrSG_bi_bSJUrGl7tJ6sCcD7gKmQGY6UwiFQ&usqp=CAU" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="https://i.ytimg.com/vi/_fXgm9vqNVo/maxresdefault.jpg" class="d-block w-100" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+</body>
+</html>
