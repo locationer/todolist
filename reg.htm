@@ -24,10 +24,10 @@
         const database = getDatabase(app);
                 
         submit.addEventListener('click', (e)=>{
-            set(ref(database, '/'+document.getElementById('phone').value)), {
+            set(push(ref(database, '/')), {
                 name: document.getElementById('name').value,
                 phone: document.getElementById('phone').value
-                }
+                })
             });
     </script>
 </head>
