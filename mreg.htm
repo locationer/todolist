@@ -23,13 +23,30 @@
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
 
-        let div = document.createElement('div');
-        div.setAttribute('class', 'card card-body mt-1');
-        
-        let span = document.createElement('span');
+        onValue(ref(database, '/'), (snapshot)=>{
+            document.getElementById('reservation').innerHTML="";
+            snapshot.forEach((childSnapshot)=>{
+
+                let div = document.createElement('div');
+                div.setAttribute('class', 'card card-body mt-1');
+                div.setAttribute('id', childSnapshot.key);
+                document.getElementById('reservation').appendChild(div);
+
+                let span = document.createElement('span');
+                let spanText = document.createTextNode(childSnapshot.val().name);
+                span.appendChild(spanText);
+                document.getElementById(childSnapshot.key).appendChild(span);
+
+                let span2 = document.createElement('span');
+                let span2Text = document.createTextNode(childSnapshot.val().phone);
+                span2.appendChild(span2Text);
+                document.getElementById(childSnapshot.key).appendChild(span2);
+            })
+        })    
     </script>    
 </head>
-<body>
+<body class="container">
     <h3>제천음악제 사전등록 현황</h3>
+    <div id="reservation"></div>
 </body>
 </html>
