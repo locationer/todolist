@@ -30,15 +30,20 @@
                   alert('이미 등록된 전화번호입니다.');
                 }
                 else{
-                set(ref(database, '/'+document.getElementById('phone').value), {
-                name: document.getElementById('name').value,
-                phone: document.getElementById('phone').value
-                });
-                document.getElementById('name').value="";
-                document.getElementById('phone').value="";
-                document.getElementById('agree').checked=false;
-                alert('사전등록이 완료되었습니다.');
-                }
+                  let today = new Date();   
+
+                  set(ref(database, '/'+document.getElementById('phone').value), {
+                    name: document.getElementById('name').value,
+                    phone: document.getElementById('phone').value,
+                    regTime: today.toLocaleString(),
+                    enterTime: '',
+                    isEnter: 0
+                  });
+                  document.getElementById('name').value="";
+                  document.getElementById('phone').value="";
+                  document.getElementById('agree').checked=false;
+                  alert('사전등록이 완료되었습니다.');
+                  }
               });
             }
           else if(document.getElementById('name').value=='' || document.getElementById('phone').value==''){

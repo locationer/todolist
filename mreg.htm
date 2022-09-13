@@ -41,12 +41,13 @@
                 let span2Text = document.createTextNode(childSnapshot.val().phone);
                 span2.appendChild(span2Text);
                 document.getElementById(childSnapshot.key).appendChild(span2);
-            })
-        })    
-    </script>    
+            });
+        });    
+    </script>
 </head>
 <body class="container">
-    <h3 class="mt-2">제천음악제 사전등록 현황</h3>
+    <h4 class="mt-2">제천음악제 참가 사전등록 현황</h4>
+    <div>제천음악제 입장을 위한 사전등록 현황입니다.</div>
     <div id="reservation" class="mb-2"></div>
 </body>
 </html>
