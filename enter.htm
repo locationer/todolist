@@ -7,6 +7,7 @@
     <title>음악제 입장</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="qrcode.js"></script>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js";
         import { getDatabase, ref, set, push, onValue, remove, get, child } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-database.js";
@@ -25,9 +26,9 @@
 
         submit.addEventListener('click', ()=>{
             get(child(ref(database), '/'+document.getElementById('phone').value)).then((snapshot)=>{
-                console.log(snapshot.exists());
                 if(snapshot.exists() && document.getElementById('name').value==snapshot.val().name){
-                    alert('신청되었습니다.');
+                  document.getElementById('qrcode').innerHTML="";
+                  new QRCode(document.getElementById("qrcode"), snapshot.key); 
                 }
                 else{
                     alert('입력하신 정보와 일치한 예약정보가 없습니다.');
@@ -42,6 +43,7 @@
     <input type="text" id="name" autofocus="autofocus" placeholder="이름" class="form-control mt-1">
     <input type="text" id="phone" placeholder="전화번호" class="form-control mt-1">
     <button type="submit" id="submit" class="btn btn-primary w-100 mt-1">QR코드 생성</button>
+    <div id="qrcode" class="mt-1"></div>
 
     <div id="carouselExampleIndicators" class="carousel slide mb-4 mt-5" data-bs-ride="true">
         <div class="carousel-indicators">
